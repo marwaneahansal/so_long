@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahansal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/16 15:15:51 by mahansal          #+#    #+#             */
-/*   Updated: 2022/12/28 02:41:14 by mahansal         ###   ########.fr       */
+/*   Created: 2022/10/14 00:54:07 by mahansal          #+#    #+#             */
+/*   Updated: 2022/10/27 02:57:01 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
-#include "libft/libft.h"
-#include <mlx.h>
+#include "libft.h"
 
-int main(void)
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-  	void	*mlx;
-	void	*mlx_win;
+	size_t	index;
 
-	ft_putstr_fd("Test Libft", 1);
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 500, 500, "so_long!");
-	mlx_loop(mlx);
-  	(void)mlx_win;
+	index = 0;
+	if (s && f)
+	{
+		while (s[index] != '\0')
+		{
+			f(index, &s[index]);
+			index++;
+		}
+	}
 }

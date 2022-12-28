@@ -6,29 +6,44 @@
 #    By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/16 15:14:27 by mahansal          #+#    #+#              #
-#    Updated: 2022/12/28 02:30:33 by mahansal         ###   ########.fr        #
+#    Updated: 2022/12/28 02:51:01 by mahansal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC		= cc
+CC			= cc
 
-NAME 	= so_long
+NAME 		= so_long
 
-SRCS 	= so_long.c 
+LIBFT_NAME 	= libft.a
 
-OBJS 	= $(SRCS:.c=.o)
+SRCS 		= so_long.c 
 
-CFLAGS 	= -Wall -Wextra -Werror
+OBJS 		= $(SRCS:.c=.o)
+
+CFLAGS 		= -Wall -Wextra -Werror
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+$(LIBFT_NAME): 
+	@echo "Compiling libft..."
+	@-make -C libft
+	@echo "libft compiled"
+
+$(NAME): $(OBJS) $(LIBFT_NAME)
+	@echo "Compiling so_long..."
+	@-$(CC) $(CFLAGS) $(OBJS) -Llibft -lft -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	@echo "so_long compiled"
 
 clean:
-	rm -f $(OBJS)
+	@echo "Cleaning..."
+	@-rm -f $(OBJS)
+	@-make clean -C libft
+	@echo "Cleaned"
 
 fclean: clean
-	rm -f $(NAME)
+	@echo "Full cleaning..."
+	@-rm -f $(NAME)
+	@-make fclean -C libft
+	@echo "Full cleaned"
 
 re: fclean all
