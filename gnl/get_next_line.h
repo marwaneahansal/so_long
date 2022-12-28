@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/09 04:38:12 by mahansal          #+#    #+#             */
-/*   Updated: 2022/12/28 05:36:47 by mahansal         ###   ########.fr       */
+/*   Created: 2022/11/03 06:53:42 by mahansal          #+#    #+#             */
+/*   Updated: 2022/12/28 05:50:00 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
-{
-	size_t	len;
+# include <unistd.h>
+# include <stdlib.h>
+# include <limits.h>
 
-	len = 0;
-	if (dstsize > 0)
-	{
-		while (src[len] != '\0' && len < dstsize - 1)
-		{
-			dst[len] = src[len];
-			len++;
-		}
-		dst[len] = '\0';
-	}
-	return (ft_strlen(src));
-}
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
+
+char	*get_next_line(int fd);
+size_t	ft_strlen(const char *s);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strdup(const char *s1);
+void	clear_rest(char *rest);
+
+#endif

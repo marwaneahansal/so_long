@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahansal <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 04:40:13 by mahansal          #+#    #+#             */
-/*   Updated: 2022/10/27 02:29:42 by mahansal         ###   ########.fr       */
+/*   Updated: 2022/12/28 03:06:28 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@ static int	is_whitespace(char c)
 	return (-1);
 }
 
-static int	check_long(int number, char n, int sign)
+static int	check_long(long long number, char n, int sign)
 {
 	int	is_long;
 
 	is_long = 1;
-	if ((unsigned long) number * 10 + (n - '0')
+	if (number * 10 + (n - '0')
 		> 9223372036854775807 && sign == 1)
 		is_long = -1;
-	else if ((unsigned long) number * 10 + (n - '0')
+	else if (number * 10 + (n - '0')
 		> 9223372036854775807 && sign == -1)
 		is_long = 0;
 	return (is_long);
@@ -47,10 +47,10 @@ static void	skip_sign_and_spaces(const char *str, int *index, int *sign)
 
 int	ft_atoi(const char *str)
 {
-	int	index;
-	int	sign;
-	int	number;
-	int	is_long;
+	int			index;
+	int			sign;
+	long long	number;
+	int			is_long;
 
 	sign = 1;
 	index = 0;

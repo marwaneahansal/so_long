@@ -6,22 +6,33 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:15:51 by mahansal          #+#    #+#             */
-/*   Updated: 2022/12/28 02:41:14 by mahansal         ###   ########.fr       */
+/*   Updated: 2022/12/28 06:18:08 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "libft/libft.h"
 #include <mlx.h>
 
-int main(void)
+int main(int argc, char *argv[])
 {
-  	void	*mlx;
-	void	*mlx_win;
+  	if (argc != 2)
+	{
+		ft_putstr_fd("Not enough arguments! the Map is required\n", 2);
+		exit(1);
+	}
+	int fd = open(argv[1], O_RDONLY);
+	if (fd < 0)
+	{
+		ft_putstr_fd("Map Not Found!\n", 2);
+		exit(1);
+	}
 
-	ft_putstr_fd("Test Libft", 1);
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 500, 500, "so_long!");
-	mlx_loop(mlx);
-  	(void)mlx_win;
+	char *map;
+	char *line = get_next_line(fd);
+	while (line)
+	{
+		map = ft_strjoin(map, line);
+		line = get_next_line(fd);
+	}
+	printf("The Map:\n%s\n", map);
 }

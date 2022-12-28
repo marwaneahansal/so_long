@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahansal <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/12 23:03:07 by mahansal          #+#    #+#             */
-/*   Updated: 2022/10/27 02:50:26 by mahansal         ###   ########.fr       */
+/*   Created: 2022/12/28 03:39:18 by mahansal          #+#    #+#             */
+/*   Updated: 2022/12/28 06:13:17 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*join_str(char *joined_str, char const *s1, char const *s2)
+char	*join_str(char *joined_str, char *s1, char *s2)
 {
 	size_t	s1_index;
 	size_t	s2_index;
@@ -44,13 +44,19 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size_t	s2_len;
 	char	*joined_str;
 
-	if (s1 == 0 || s2 == 0)
+	if (!s2)
 		return (0);
+	if (!s1)
+		return (ft_strdup(s2));
 	s1_len = ft_strlen(s1);
 	s2_len = ft_strlen(s2);
 	joined_str = malloc((s1_len + s2_len + 1) * sizeof(char));
-	if (joined_str == 0)
+	if (!joined_str)
+	{
+		free((char *) s1);
 		return (0);
-	joined_str = join_str(joined_str, s1, s2);
+	}
+	joined_str = join_str(joined_str, (char *) s1, (char *) s2);
+	free((char *) s1);
 	return (joined_str);
 }
