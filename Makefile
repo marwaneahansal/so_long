@@ -6,7 +6,7 @@
 #    By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/16 15:14:27 by mahansal          #+#    #+#              #
-#    Updated: 2022/12/28 06:17:14 by mahansal         ###   ########.fr        #
+#    Updated: 2022/12/28 06:34:11 by mahansal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,8 @@ OBJS 		= $(SRCS:.c=.o)
 CFLAGS 		= -Wall -Wextra -Werror
 
 all: $(NAME)
+
+.SILENT: $(OBJS)
 
 $(LIBFT_NAME): 
 	@echo "Compiling libft..."

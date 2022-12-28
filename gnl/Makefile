@@ -6,7 +6,7 @@
 #    By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/28 05:45:45 by mahansal          #+#    #+#              #
-#    Updated: 2022/12/28 06:16:01 by mahansal         ###   ########.fr        #
+#    Updated: 2022/12/28 06:33:44 by mahansal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,8 @@ OBJS 	= $(SRCS:.c=.o)
 CFLAGS 	= -Wall -Wextra -Werror
 
 all: $(NAME)
+
+.SILENT: $(OBJS)
 
 $(NAME): $(OBJS)
 	@-ar rc ../libs/$(NAME) $(OBJS)

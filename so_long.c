@@ -6,7 +6,7 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:15:51 by mahansal          #+#    #+#             */
-/*   Updated: 2022/12/28 06:18:08 by mahansal         ###   ########.fr       */
+/*   Updated: 2022/12/28 06:31:38 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
 	int fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 	{
-		ft_putstr_fd("Map Not Found!\n", 2);
+		ft_putstr_fd("Map File Not Found!\n", 2);
 		exit(1);
 	}
 
