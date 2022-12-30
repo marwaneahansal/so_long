@@ -6,7 +6,7 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:15:51 by mahansal          #+#    #+#             */
-/*   Updated: 2022/12/29 07:14:43 by mahansal         ###   ########.fr       */
+/*   Updated: 2022/12/30 07:56:17 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
 		exit(1);
 	}
 	game->nbr_rows = ft_strlen(line) - 1;
-	game->nbr_cols = 1;
+	game->nbr_cols = 0;
 	game->map = NULL;
 	game->map_2d = NULL;
 	while (line)
@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
 	}
 	game->map_2d = ft_split(game->map, '\n');
 	mlx = mlx_init();
-	mlx_window = mlx_new_window(mlx, game->nbr_rows * 60, game->nbr_cols * 60, "So Long!");
+	mlx_window = mlx_new_window(mlx, game->nbr_rows * 46, game->nbr_cols * 45, "So Long!");
 	void	*img;
 	int		img_height;
 	int		img_width;
@@ -61,10 +61,11 @@ int main(int argc, char *argv[])
 	int j = 0;
 	while (game->map_2d[i])
 	{
+		j = 0;
 		while (game->map_2d[i][j])
 		{
 			if (game->map_2d[i][j] == '1')
-				mlx_put_image_to_window(mlx, mlx_window, img, j * img_width, i * 10);
+				mlx_put_image_to_window(mlx, mlx_window, img, j * img_width, i * img_height);
 			j++;
 		}
 		i++;
