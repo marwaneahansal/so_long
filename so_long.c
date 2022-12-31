@@ -6,7 +6,7 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:15:51 by mahansal          #+#    #+#             */
-/*   Updated: 2022/12/30 07:56:17 by mahansal         ###   ########.fr       */
+/*   Updated: 2022/12/31 01:08:21 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,13 @@ int main(int argc, char *argv[])
 	game->map_2d = ft_split(game->map, '\n');
 	mlx = mlx_init();
 	mlx_window = mlx_new_window(mlx, game->nbr_rows * 46, game->nbr_cols * 45, "So Long!");
-	void	*img;
+	void	*ground_img;
+	void	*wall_img;
 	int		img_height;
 	int		img_width;
-	img = mlx_xpm_file_to_image(mlx, "./assets/ground07.xpm", &img_width, &img_height);
-	if (!img)
+	ground_img = mlx_xpm_file_to_image(mlx, "./assets/ground.xpm", &img_width, &img_height);
+	wall_img = mlx_xpm_file_to_image(mlx, "./assets/wall.xpm", &img_width, &img_height);
+	if (!ground_img || !wall_img)
 		printf("img error!\n");
 	int i = 0;
 	int j = 0;
@@ -64,8 +66,10 @@ int main(int argc, char *argv[])
 		j = 0;
 		while (game->map_2d[i][j])
 		{
-			if (game->map_2d[i][j] == '1')
-				mlx_put_image_to_window(mlx, mlx_window, img, j * img_width, i * img_height);
+			if (game->map_2d[i][j] == '0')
+				mlx_put_image_to_window(mlx, mlx_window, ground_img, j * img_width, i * img_height);
+			else if (game->map_2d[i][j] == '1')
+				mlx_put_image_to_window(mlx, mlx_window, wall_img, j * img_width, i * img_height);
 			j++;
 		}
 		i++;
