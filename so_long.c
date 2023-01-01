@@ -6,7 +6,7 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:15:51 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/01 08:12:27 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/01 08:21:03 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,12 @@ void	move_player(t_game *game, int new_x_pos, int new_pos_y)
 	}
 }
 
+void	exit_game(t_game *game)
+{
+	free(game);
+	exit(0);
+}
+
 int key_hook(int keycode, t_game *game)
 {
 	if (keycode == 13) // w
@@ -43,6 +49,8 @@ int key_hook(int keycode, t_game *game)
 		move_player(game, game->player->pos_x + 1, game->player->pos_y);
 	else if (keycode == 2) // d
 		move_player(game, game->player->pos_x, game->player->pos_y + 1);
+	else if (keycode == 53) // esc
+		exit_game(game);
 	return (0);
 }
 
