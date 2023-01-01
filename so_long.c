@@ -6,62 +6,40 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:15:51 by mahansal          #+#    #+#             */
-/*   Updated: 2022/12/31 05:46:49 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/01 01:05:47 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include <mlx.h>
 
+void	move_player(t_game *game, int new_x_pos, int new_pos_y)
+{
+	//! check if the new position is a collectable
+	if (game->map_2d[new_x_pos][new_pos_y] == 'C')
+	{
+		game->map_2d[game->player->pos_x][game->player->pos_y] = '0';
+		game->map_2d[new_x_pos][new_pos_y] = 'P';
+		render_map(game->mlx, game->mlx_window, game, game->player);
+	}
+	else if (game->map_2d[new_x_pos][new_pos_y] == '0')
+	{
+		game->map_2d[game->player->pos_x][game->player->pos_y] = '0';
+		game->map_2d[new_x_pos][new_pos_y] = 'P';
+		render_map(game->mlx, game->mlx_window, game, game->player);			
+	}
+}
+
 int key_hook(int keycode, t_game *game)
 {
-	/** 
-		* ? w ==> 13
-		* ? a ==> 0
-		* ? s ==> 1
-		* ? d ==> 2
-	*/
-	// TODO: check for the keycode and re-render the map accordingly
 	if (keycode == 13) // w
-	{
-		//! update the map
-		if (game->map_2d[game->player->pos_x - 1][game->player->pos_y] == '0')
-		{
-			game->map_2d[game->player->pos_x][game->player->pos_y] = '0';
-			game->map_2d[game->player->pos_x - 1][game->player->pos_y] = 'P';
-			render_map(game->mlx, game->mlx_window, game, game->player);			
-		}		
-	}
+		move_player(game, game->player->pos_x - 1, game->player->pos_y);
 	else if (keycode == 0) // a
-	{
-		//! update the map
-		if (game->map_2d[game->player->pos_x][game->player->pos_y - 1] == '0')
-		{
-			game->map_2d[game->player->pos_x][game->player->pos_y] = '0';
-			game->map_2d[game->player->pos_x][game->player->pos_y - 1] = 'P';
-			render_map(game->mlx, game->mlx_window, game, game->player);			
-		}		
-	}
+		move_player(game, game->player->pos_x, game->player->pos_y - 1);
 	else if (keycode == 1) // s
-	{
-		//! update the map
-		if (game->map_2d[game->player->pos_x + 1][game->player->pos_y] == '0')
-		{
-			game->map_2d[game->player->pos_x][game->player->pos_y] = '0';
-			game->map_2d[game->player->pos_x + 1][game->player->pos_y] = 'P';
-			render_map(game->mlx, game->mlx_window, game, game->player);			
-		}		
-	}
+		move_player(game, game->player->pos_x + 1, game->player->pos_y);
 	else if (keycode == 2) // d
-	{
-		//! update the map
-		if (game->map_2d[game->player->pos_x][game->player->pos_y + 1] == '0')
-		{
-			game->map_2d[game->player->pos_x][game->player->pos_y] = '0';
-			game->map_2d[game->player->pos_x][game->player->pos_y + 1] = 'P';
-			render_map(game->mlx, game->mlx_window, game, game->player);			
-		}		
-	}
+		move_player(game, game->player->pos_x, game->player->pos_y + 1);
 	return (0);
 }
 
