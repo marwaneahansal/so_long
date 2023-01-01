@@ -6,7 +6,7 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:16:28 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/01 01:01:46 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/01 08:09:33 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 typedef struct  s_player {
     int pos_x;
     int pos_y;
+    int movements_nbr;
 } t_player;
 
 typedef struct  s_game {
@@ -34,7 +35,7 @@ typedef struct  s_game {
     char        *map;
     char        **map_2d;
     char        **orig_map_2d;
-    t_player    *player;   
+    t_player    *player;
     
 } t_game;
 

@@ -6,7 +6,7 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:15:51 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/01 01:05:47 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/01 08:12:27 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 
 void	move_player(t_game *game, int new_x_pos, int new_pos_y)
 {
-	//! check if the new position is a collectable
+	// *? put the current movemnts in the shell
+	ft_putstr_fd("the number of movements: ", 1);
+	ft_putnbr_fd(++game->player->movements_nbr, 1);
+	ft_putchar_fd('\n', 1);
 	if (game->map_2d[new_x_pos][new_pos_y] == 'C')
 	{
 		game->map_2d[game->player->pos_x][game->player->pos_y] = '0';
@@ -111,6 +114,7 @@ int main(int argc, char *argv[])
 	t_player *player = malloc(sizeof(t_player));
 	if (!game || !player)
 		exit(1);
+	player->movements_nbr = 0;
 	char *line = get_next_line(fd);
 	if (!line)
 	{
