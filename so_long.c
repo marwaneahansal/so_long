@@ -6,35 +6,42 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:15:51 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/01 08:21:03 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/01 08:41:17 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include <mlx.h>
 
-void	move_player(t_game *game, int new_x_pos, int new_pos_y)
+void	move_player(t_game *game, int new_x_pos, int new_y_pos)
 {
 	// *? put the current movemnts in the shell
 	ft_putstr_fd("the number of movements: ", 1);
 	ft_putnbr_fd(++game->player->movements_nbr, 1);
 	ft_putchar_fd('\n', 1);
-	if (game->map_2d[new_x_pos][new_pos_y] == 'C')
+	
+	if (game->map_2d[new_x_pos][new_y_pos] == 'C')
 	{
 		game->map_2d[game->player->pos_x][game->player->pos_y] = '0';
-		game->map_2d[new_x_pos][new_pos_y] = 'P';
+		game->map_2d[new_x_pos][new_y_pos] = 'P';
+		game->player->eaten_colle_nbr++;
+		if (game->colle_nbr == game->player->eaten_colle_nbr)
+			game->is_finished = 1;
 		render_map(game->mlx, game->mlx_window, game, game->player);
 	}
-	else if (game->map_2d[new_x_pos][new_pos_y] == '0')
+	else if (game->map_2d[new_x_pos][new_y_pos] == '0')
 	{
 		game->map_2d[game->player->pos_x][game->player->pos_y] = '0';
-		game->map_2d[new_x_pos][new_pos_y] = 'P';
+		game->map_2d[new_x_pos][new_y_pos] = 'P';
 		render_map(game->mlx, game->mlx_window, game, game->player);			
 	}
+	else if (game->is_finished && game->map_2d[new_x_pos][new_y_pos] == 'E')
+		exit_game(game);
 }
 
 void	exit_game(t_game *game)
 {
+	free(game->player);
 	free(game);
 	exit(0);
 }
@@ -60,7 +67,8 @@ void	render_map(void *mlx, void *mlx_window, t_game *game, t_player *player)
 	void	*wall_img;
 	void	*player_img;
 	void	*collectable_img;
-	void	*exit_img;
+	void	*closed_exit_img;
+	void	*open_exit_img;
 	int		img_height;
 	int		img_width;
 	
@@ -69,9 +77,10 @@ void	render_map(void *mlx, void *mlx_window, t_game *game, t_player *player)
 	wall_img = mlx_xpm_file_to_image(mlx, "./assets/wall.xpm", &img_width, &img_height);
 	player_img = mlx_xpm_file_to_image(mlx, "./assets/player.xpm", &img_width, &img_height);
 	collectable_img = mlx_xpm_file_to_image(mlx, "./assets/collectable.xpm", &img_width, &img_height);
-	exit_img = mlx_xpm_file_to_image(mlx, "./assets/exit.xpm", &img_width, &img_height);
+	closed_exit_img = mlx_xpm_file_to_image(mlx, "./assets/closed_exit.xpm", &img_width, &img_height);
+	open_exit_img = mlx_xpm_file_to_image(mlx, "./assets/open_exit.xpm", &img_width, &img_height);
 
-	if (!ground_img || !wall_img || !player_img || !collectable_img || !exit_img)
+	if (!ground_img || !wall_img || !player_img || !collectable_img || !closed_exit_img || !open_exit_img)
 		printf("img error!\n");
 	int i = 0;
 	int j = 0;
@@ -95,11 +104,32 @@ void	render_map(void *mlx, void *mlx_window, t_game *game, t_player *player)
 			else if (game->map_2d[i][j] == 'C')
 				mlx_put_image_to_window(mlx, mlx_window, collectable_img, j * img_width, i * img_height);
 			else if (game->map_2d[i][j] == 'E')
-				mlx_put_image_to_window(mlx, mlx_window, exit_img, j * img_width, i * img_height);
+			{	
+				if (!game->is_finished)
+					mlx_put_image_to_window(mlx, mlx_window, closed_exit_img, j * img_width, i * img_height);
+				else
+					mlx_put_image_to_window(mlx, mlx_window, open_exit_img, j * img_width, i * img_height);
+			}
 			j++;
 		}
 		i++;
 	}
+}
+
+int	count_collectables(char *map)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (map[i])
+	{
+		if (map[i] == 'C')
+			count++;
+		i++;
+	}
+	return (count);
 }
 
 int main(int argc, char *argv[])
@@ -123,6 +153,7 @@ int main(int argc, char *argv[])
 	if (!game || !player)
 		exit(1);
 	player->movements_nbr = 0;
+	player->eaten_colle_nbr = 0;
 	char *line = get_next_line(fd);
 	if (!line)
 	{
@@ -134,6 +165,8 @@ int main(int argc, char *argv[])
 	game->map = NULL;
 	game->map_2d = NULL;
 	game->orig_map_2d = NULL;
+	game->colle_nbr = 0;
+	game->is_finished = 0;
 	while (line)
 	{
 		game->map = ft_strjoin(game->map, line);
@@ -147,6 +180,8 @@ int main(int argc, char *argv[])
 	// *? initialize mlbx
 	game->mlx = mlx_init();
 	game->mlx_window = mlx_new_window(game->mlx, game->nbr_rows * 46, game->nbr_cols * 45, "So Long!");
+	// *? count the nbr of collectables
+	game->colle_nbr = count_collectables(game->map);
 	// *? render the map
 	render_map(game->mlx, game->mlx_window, game, player);
 	// *? listen for key presses
