@@ -6,7 +6,7 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:15:51 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/01 08:41:17 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/01 09:03:51 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ void	move_player(t_game *game, int new_x_pos, int new_y_pos)
 void	exit_game(t_game *game)
 {
 	free(game->player);
+	free(game->map);
+	free(game->map_2d);
+	free(game->orig_map_2d);
 	free(game);
 	exit(0);
 }
