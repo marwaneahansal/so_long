@@ -6,7 +6,7 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:15:51 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/02 03:02:56 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/02 05:21:41 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,11 @@ void	move_player(t_game *game, int new_x_pos, int new_y_pos)
 	{
 		game->map_2d[game->player->pos_x][game->player->pos_y] = '0';
 		game->map_2d[new_x_pos][new_y_pos] = 'P';
-		render_map(game->mlx, game->mlx_window, game, game->player);			
+		render_map(game->mlx, game->mlx_window, game, game->player);
 	}
 	else if (game->is_finished && game->map_2d[new_x_pos][new_y_pos] == 'E')
 		exit_game(game);
+		// mlx_clear_window(game->mlx, game->mlx_window);
 }
 
 void	exit_game(t_game *game)
@@ -183,7 +184,8 @@ int main(int argc, char *argv[])
 	// ?* check the map if it's valid or not
 	printf("components check %d\n", check_components(game->orig_map_2d));
 	printf("ecp check %d\n", check_ecp(game->orig_map_2d));
-	printf("rectamgular check %d\n", check_rect(game->orig_map_2d));
+	printf("rectangular check %d\n", check_rect(game->orig_map_2d));
+	printf("wall check %d\n", check_walls(game->orig_map_2d));
 	// *? initialize mlbx
 	game->mlx = mlx_init();
 	game->mlx_window = mlx_new_window(game->mlx, game->nbr_rows * 46, game->nbr_cols * 45, "So Long!");

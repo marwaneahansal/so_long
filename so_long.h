@@ -6,7 +6,7 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:16:28 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/02 03:03:20 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/02 05:17:12 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ void	exit_game(t_game *game);
 int check_components(char **map);
 int check_ecp(char **map);
 int check_rect(char **map);
+int check_walls(char **map);
 
 #endif

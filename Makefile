@@ -6,7 +6,7 @@
 #    By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/16 15:14:27 by mahansal          #+#    #+#              #
-#    Updated: 2023/01/02 03:03:53 by mahansal         ###   ########.fr        #
+#    Updated: 2023/01/02 05:17:22 by mahansal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ GNL_NAME 	= libgnl.a
 
 SRCS 		= so_long.c map_check/check_components.c \
 				map_check/check_ecp.c map_check/check_rect.c \
+				map_check/check_walls.c
 
 OBJS 		= $(SRCS:.c=.o)
 
