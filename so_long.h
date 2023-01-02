@@ -6,7 +6,7 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:16:28 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/01 08:29:41 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/02 01:05:20 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,7 @@ void	render_map(void *mlx, void *mlx_window, t_game *game, t_player *player);
 int     key_hook(int keycode, t_game *game);
 void	move_player(t_game *game, int new_x_pos, int new_pos_y);
 void	exit_game(t_game *game);
+
+int check_components(char *map);
 
 #endif
