@@ -6,7 +6,7 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:15:51 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/02 01:05:49 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/02 02:02:40 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,11 +176,11 @@ int main(int argc, char *argv[])
 		line = get_next_line(fd);
 		game->nbr_cols++;
 	}
-	printf("components check %d\n", check_components(game->map));
 	// *? split the map
 	game->map_2d = ft_split(game->map, '\n');
 	game->orig_map_2d = ft_split(game->map, '\n');
 	game->player = player;
+	printf("components check %d\n", check_components(game->orig_map_2d));
 	// *? initialize mlbx
 	game->mlx = mlx_init();
 	game->mlx_window = mlx_new_window(game->mlx, game->nbr_rows * 46, game->nbr_cols * 45, "So Long!");
