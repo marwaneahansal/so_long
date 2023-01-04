@@ -6,7 +6,7 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:15:51 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/02 05:21:41 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/03 23:43:13 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,31 @@ int	count_collectables(char *map)
 	return (count);
 }
 
+void	get_player_pos(char **map, t_player *player)
+{
+	int	i;
+	int	j;
+	
+	i = 0;
+	j = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == 'P')
+			{
+				player->pos_x = i;
+				player->pos_y = j;
+				return ;
+			}
+			j++;
+		}
+		i++;
+	}
+	
+}
+
 int main(int argc, char *argv[])
 {
 	// *? arguments check
@@ -181,11 +206,20 @@ int main(int argc, char *argv[])
 	game->map_2d = ft_split(game->map, '\n');
 	game->orig_map_2d = ft_split(game->map, '\n');
 	game->player = player;
+	get_player_pos(game->map_2d, player);
 	// ?* check the map if it's valid or not
 	printf("components check %d\n", check_components(game->orig_map_2d));
 	printf("ecp check %d\n", check_ecp(game->orig_map_2d));
 	printf("rectangular check %d\n", check_rect(game->orig_map_2d));
 	printf("wall check %d\n", check_walls(game->orig_map_2d));
+	player_flood_fill(game->map_2d, player->pos_x, player->pos_y);
+	int i = 0;
+	while (game->map_2d[i])
+	{
+		printf("%s\n", game->map_2d[i]);
+		i++;
+	}
+	
 	// *? initialize mlbx
 	game->mlx = mlx_init();
 	game->mlx_window = mlx_new_window(game->mlx, game->nbr_rows * 46, game->nbr_cols * 45, "So Long!");
