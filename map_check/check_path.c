@@ -6,7 +6,7 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 23:01:06 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/04 03:38:45 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/09 07:44:59 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 void    player_flood_fill(char **map, int x, int y)
 {
-    // printf("x = %d || y = %d\n", x, y);
-    if (x < 0 || y < 0 || x > 4 || y > 12)
-        return ;
     if (map[x][y] == '1' || map[x][y] == 'E' || map[x][y] == 'B')
         return ;
     map[x][y] = 'B';
@@ -24,5 +21,15 @@ void    player_flood_fill(char **map, int x, int y)
     player_flood_fill(map, x + 1, y);
     player_flood_fill(map, x, y + 1);
     player_flood_fill(map, x, y - 1);
-    return ;
+}
+
+void    exit_flood_fill(char **map, int x, int y)
+{
+    if (map[x][y] == '1' || map[x][y] == 'H')
+        return ;
+    map[x][y] = 'H';
+    exit_flood_fill(map, x - 1, y);
+    exit_flood_fill(map, x + 1, y);
+    exit_flood_fill(map, x, y + 1);
+    exit_flood_fill(map, x, y - 1);
 }

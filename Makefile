@@ -6,7 +6,7 @@
 #    By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/16 15:14:27 by mahansal          #+#    #+#              #
-#    Updated: 2023/01/03 23:29:50 by mahansal         ###   ########.fr        #
+#    Updated: 2023/01/09 09:10:04 by mahansal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,10 @@ LIBFT_NAME 	= libft.a
 
 GNL_NAME 	= libgnl.a
 
-SRCS 		= so_long.c map_check/check_components.c \
+SRCS 		= so_long.c map_check/check_map.c map_check/check_components.c \
 				map_check/check_ecp.c map_check/check_rect.c \
 				map_check/check_walls.c map_check/check_path.c \
+				init.c utils.c
 
 OBJS 		= $(SRCS:.c=.o)
 

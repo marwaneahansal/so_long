@@ -6,12 +6,11 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:15:51 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/03 23:43:13 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/09 09:12:56 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <mlx.h>
 
 void	move_player(t_game *game, int new_x_pos, int new_y_pos)
 {
@@ -38,16 +37,6 @@ void	move_player(t_game *game, int new_x_pos, int new_y_pos)
 	else if (game->is_finished && game->map_2d[new_x_pos][new_y_pos] == 'E')
 		exit_game(game);
 		// mlx_clear_window(game->mlx, game->mlx_window);
-}
-
-void	exit_game(t_game *game)
-{
-	free(game->player);
-	free(game->map);
-	free(game->map_2d);
-	free(game->orig_map_2d);
-	free(game);
-	exit(0);
 }
 
 int key_hook(int keycode, t_game *game)
@@ -120,115 +109,35 @@ void	render_map(void *mlx, void *mlx_window, t_game *game, t_player *player)
 	}
 }
 
-int	count_collectables(char *map)
-{
-	int	i;
-	int	count;
-
-	i = 0;
-	count = 0;
-	while (map[i])
-	{
-		if (map[i] == 'C')
-			count++;
-		i++;
-	}
-	return (count);
-}
-
-void	get_player_pos(char **map, t_player *player)
-{
-	int	i;
-	int	j;
-	
-	i = 0;
-	j = 0;
-	while (map[i])
-	{
-		j = 0;
-		while (map[i][j])
-		{
-			if (map[i][j] == 'P')
-			{
-				player->pos_x = i;
-				player->pos_y = j;
-				return ;
-			}
-			j++;
-		}
-		i++;
-	}
-	
-}
-
 int main(int argc, char *argv[])
 {
 	// *? arguments check
   	if (argc != 2)
-	{
-		ft_putstr_fd("Not enough arguments! the Map is required\n", 2);
-		exit(1);
-	}
+		print_error("Not enough arguments! the Map is required\n", 1);
+	
 	// *? file map check
 	int fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
-	{
-		ft_putstr_fd("Map File Not Found!\n", 2);
-		exit(1);
-	}
-	// *? initialize t_game and t_player then read map line by line
+		print_error("Map File Not Found!\n", 1);
+	
+	// *? initialize t_game and t_player
 	t_game *game = malloc(sizeof(t_game));
 	t_player *player = malloc(sizeof(t_player));
 	if (!game || !player)
-		exit(1);
-	player->movements_nbr = 0;
-	player->eaten_colle_nbr = 0;
-	char *line = get_next_line(fd);
-	if (!line)
-	{
-		ft_putstr_fd("Map is empty!\n", 2);
-		exit(1);
-	}
-	game->nbr_rows = ft_strlen(line) - 1;
-	game->nbr_cols = 0;
-	game->map = NULL;
-	game->map_2d = NULL;
-	game->orig_map_2d = NULL;
-	game->colle_nbr = 0;
-	game->is_finished = 0;
-	while (line)
-	{
-		game->map = ft_strjoin(game->map, line);
-		line = get_next_line(fd);
-		game->nbr_cols++;
-	}
-	// *? split the map
-	game->map_2d = ft_split(game->map, '\n');
-	game->orig_map_2d = ft_split(game->map, '\n');
-	game->player = player;
-	get_player_pos(game->map_2d, player);
-	// ?* check the map if it's valid or not
-	printf("components check %d\n", check_components(game->orig_map_2d));
-	printf("ecp check %d\n", check_ecp(game->orig_map_2d));
-	printf("rectangular check %d\n", check_rect(game->orig_map_2d));
-	printf("wall check %d\n", check_walls(game->orig_map_2d));
-	player_flood_fill(game->map_2d, player->pos_x, player->pos_y);
-	int i = 0;
-	while (game->map_2d[i])
-	{
-		printf("%s\n", game->map_2d[i]);
-		i++;
-	}
+		print_error("Memory was not allocated1\n", 1);
 	
-	// *? initialize mlbx
+	init_game(game, player, fd);
+	
+	// ?* check the map if it's valid or not
+	check_map(game);
+	// *? initialize mlx
 	game->mlx = mlx_init();
 	game->mlx_window = mlx_new_window(game->mlx, game->nbr_rows * 46, game->nbr_cols * 45, "So Long!");
-	// *? count the nbr of collectables
-	game->colle_nbr = count_collectables(game->map);
 	// *? render the map
 	render_map(game->mlx, game->mlx_window, game, player);
 	// *? listen for key presses
-	mlx_key_hook(game->mlx_window, key_hook, game);
+	mlx_hook(game->mlx_window, 2, 0, key_hook, game);
+	// mlx_key_hook(game->mlx_window, key_hook, game);
 	mlx_loop(game->mlx);
 	
 	// *? free the variables
