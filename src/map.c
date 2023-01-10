@@ -6,7 +6,7 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 03:18:17 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/10 04:36:34 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/10 05:02:28 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,28 @@ void	render_map(t_game *game)
 		}
 		i++;
 	}
+}
+
+void	move_player(t_game *game, int new_x_pos, int new_y_pos)
+{
+	ft_putstr_fd("the number of movements: ", 1);
+	ft_putnbr_fd(++game->player->movements_nbr, 1);
+	ft_putchar_fd('\n', 1);
+	if (game->map_2d[new_x_pos][new_y_pos] == 'C')
+	{
+		game->map_2d[game->player->pos_x][game->player->pos_y] = '0';
+		game->map_2d[new_x_pos][new_y_pos] = 'P';
+		game->player->eaten_colle_nbr++;
+		if (game->colle_nbr == game->player->eaten_colle_nbr)
+			game->is_finished = 1;
+		render_map(game);
+	}
+	else if (game->map_2d[new_x_pos][new_y_pos] == '0')
+	{
+		game->map_2d[game->player->pos_x][game->player->pos_y] = '0';
+		game->map_2d[new_x_pos][new_y_pos] = 'P';
+		render_map(game);
+	}
+	else if (game->is_finished && game->map_2d[new_x_pos][new_y_pos] == 'E')
+		exit_game(game);
 }

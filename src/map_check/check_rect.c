@@ -6,11 +6,11 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 02:57:21 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/02 05:51:50 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/10 05:54:44 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../../so_long.h"
 
 int check_rect(char **map)
 {
