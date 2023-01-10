@@ -6,7 +6,7 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 07:42:12 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/10 03:17:21 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/10 10:06:50 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,15 @@ void	read_map(t_game *game, int fd)
 
 	line = get_next_line(fd);
 	tmp_line = line;
-	if (!line)
+	if (!line || line[0] == '\n')
 		print_error("Map is empty!\n", 1);
 	game->nbr_rows = ft_strlen(line) - 1;
 	while (line)
 	{
 		game->map = ft_strjoin(game->map, line);
 		line = get_next_line(fd);
+		if (line && (line[0] == '\n' || line[0] == '\0'))
+			print_error("Map is not valid\n", 1);
 		free(line);
 		game->nbr_cols++;
 	}
