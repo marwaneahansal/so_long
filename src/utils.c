@@ -6,11 +6,11 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 08:44:05 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/09 09:12:13 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/10 03:17:25 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	exit_game(t_game *game)
 {

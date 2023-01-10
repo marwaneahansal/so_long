@@ -6,11 +6,11 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 07:42:12 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/09 09:14:22 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/10 03:17:21 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	get_player_pos(char **map, t_player *player)
 {
@@ -39,8 +39,10 @@ void	get_player_pos(char **map, t_player *player)
 void	read_map(t_game *game, int fd)
 {
 	char	*line;
+	char	*tmp_line;
 
 	line = get_next_line(fd);
+	tmp_line = line;
 	if (!line)
 		print_error("Map is empty!\n", 1);
 	game->nbr_rows = ft_strlen(line) - 1;
@@ -51,6 +53,7 @@ void	read_map(t_game *game, int fd)
 		free(line);
 		game->nbr_cols++;
 	}
+	free(tmp_line);
 }
 
 int	count_collectables(char *map)

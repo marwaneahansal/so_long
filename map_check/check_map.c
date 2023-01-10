@@ -6,7 +6,7 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 08:47:47 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/09 09:16:22 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/09 09:23:19 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ void	check_map(t_game *game)
 	if (!check_ecp(game->orig_map_2d))
 		print_error("It must be only 1 exit, 1 player and at least 1 collectable\n", 1);
 	if (!check_rect(game->orig_map_2d))
-		print_error("The map must be rectangular", 1);
+		print_error("The map must be rectangular\n", 1);
 	if (!check_walls(game->orig_map_2d))
-		print_error("The map must be surrounded by walls", 1);
+		print_error("The map must be surrounded by walls\n", 1);
 	player_flood_fill(game->orig_map_2d, game->player->pos_x, game->player->pos_y);
 	if (!check_char_in_map(game->orig_map_2d, 'C'))
 		print_error("The player cannot reach one of the collectables\n", 1);
