@@ -6,7 +6,7 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 03:18:17 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/10 05:02:28 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/11 03:03:47 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,21 @@ void	render_map(t_game *game)
 		}
 		i++;
 	}
+}
+
+int key_hook(int keycode, t_game *game)
+{
+	if (keycode == 13)
+		move_player(game, game->player->pos_x - 1, game->player->pos_y);
+	else if (keycode == 0)
+		move_player(game, game->player->pos_x, game->player->pos_y - 1);
+	else if (keycode == 1)
+		move_player(game, game->player->pos_x + 1, game->player->pos_y);
+	else if (keycode == 2)
+		move_player(game, game->player->pos_x, game->player->pos_y + 1);
+	else if (keycode == 53)
+		exit_game(game);
+	return (0);
 }
 
 void	move_player(t_game *game, int new_x_pos, int new_y_pos)

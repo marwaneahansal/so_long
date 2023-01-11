@@ -6,7 +6,7 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 07:42:12 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/11 00:09:39 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/11 03:20:34 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,5 @@ void	init_game(t_game *game, t_player *player, int fd)
 	game->map_2d = ft_split(game->map, '\n');
 	get_player_pos(game->orig_map_2d, player);
 	game->colle_nbr = count_collectables(game->map);
+	game->mlx = mlx_init();
 }
