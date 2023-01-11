@@ -6,7 +6,7 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:15:51 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/10 05:52:35 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/11 03:01:23 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,23 @@ int key_hook(int keycode, t_game *game)
 	return (0);
 }
 
+void	check_map_name(char *filepath)
+{
+	char	*res;
+
+	res = ft_strnstr(filepath, ".ber", ft_strlen(filepath));
+	
+	if (!res)
+		print_error("Map extension file must end with .ber\n", 1);
+	if (ft_strncmp(res, ".ber", ft_strlen(res)))
+		print_error("Map extension file must end with .ber\n", 1);
+}
+
 int main(int argc, char *argv[])
 {
   	if (argc != 2)
 		print_error("Not enough arguments! the Map is required\n", 1);
+	check_map_name(argv[1]);
 	int fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		print_error("Map File Not Found!\n", 1);
