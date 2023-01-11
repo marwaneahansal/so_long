@@ -6,7 +6,7 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 03:39:18 by mahansal          #+#    #+#             */
-/*   Updated: 2022/12/29 00:01:49 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/11 03:27:05 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ char	*join_str(char *joined_str, char *s1, char *s2)
 	joined_str[s1_index] = '\0';
 	return (joined_str);
 }
-#include <stdio.h>
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {

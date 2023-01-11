@@ -6,7 +6,7 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 08:47:47 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/10 05:54:44 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/11 03:30:30 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,18 @@ void	check_map(t_game *game)
 	if (!check_components(game->orig_map_2d))
 		print_error("only 0, 1, C, E and P are allowed\n", 1);
 	if (!check_ecp(game->orig_map_2d))
-		print_error("It must be only 1 exit, 1 player and at least 1 collectable\n", 1);
+		print_error("the map must 1 exit, 1 player and at least 1 collectable\n",
+			1);
 	if (!check_rect(game->orig_map_2d))
 		print_error("The map must be rectangular\n", 1);
 	if (!check_walls(game->orig_map_2d))
 		print_error("The map must be surrounded by walls\n", 1);
-	player_flood_fill(game->orig_map_2d, game->player->pos_x, game->player->pos_y);
+	player_flood_fill(game->orig_map_2d, game->player->pos_x,
+		game->player->pos_y);
 	if (!check_char_in_map(game->orig_map_2d, 'C'))
 		print_error("The player cannot reach one of the collectables\n", 1);
-	exit_flood_fill(game->orig_map_2d, game->player->pos_x, game->player->pos_y);
+	exit_flood_fill(game->orig_map_2d, game->player->pos_x,
+		game->player->pos_y);
 	if (!check_char_in_map(game->orig_map_2d, 'E'))
 		print_error("The player cannot exit\n", 1);
 }

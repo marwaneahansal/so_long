@@ -6,7 +6,7 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 03:18:17 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/11 03:03:47 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/11 03:27:35 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	render_map(t_game *game)
 	}
 }
 
-int key_hook(int keycode, t_game *game)
+int	key_hook(int keycode, t_game *game)
 {
 	if (keycode == 13)
 		move_player(game, game->player->pos_x - 1, game->player->pos_y);

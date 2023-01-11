@@ -6,7 +6,7 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 08:44:05 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/10 03:17:25 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/11 03:28:04 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	exit_game(t_game *game)
 	exit(0);
 }
 
-void    print_error(char *error, int exit_code)
+void	print_error(char *error, int exit_code)
 {
-    ft_putstr_fd("Error:\n", 2);
-    ft_putstr_fd(error, 2);
-    exit(exit_code);
+	ft_putstr_fd("Error:\n", 2);
+	ft_putstr_fd(error, 2);
+	exit(exit_code);
 }
