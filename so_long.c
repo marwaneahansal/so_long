@@ -6,7 +6,7 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:15:51 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/11 03:26:17 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/13 00:17:29 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 void	check_map_name(char *filepath)
 {
 	char	*res;
-
-	res = ft_strnstr(filepath, ".ber", ft_strlen(filepath));
+	
+	res = ft_strrchr(filepath, '.');
 	if (!res)
 		print_error("Map extension file must end with .ber\n", 1);
-	if (ft_strncmp(res, ".ber", 4))
+	if (ft_strlen(res) != 4 || ft_strncmp(res, ".ber", 4))
 		print_error("Map extension file must end with .ber\n", 1);
 }
 
@@ -52,6 +52,7 @@ int	main(int argc, char *argv[])
 		print_error("Memory was not allocated1\n", 1);
 	init_game(game, player, fd);
 	check_map(game);
+	game->mlx = mlx_init();
 	game->mlx_window = mlx_new_window(game->mlx, game->nbr_rows * 46,
 			game->nbr_cols * 45, "So Long!");
 	render_map(game);
