@@ -6,7 +6,7 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 08:47:47 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/13 07:54:12 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/13 08:03:41 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,25 @@ int	check_char_in_map(char **map, char c)
 	return (1);
 }
 
+int	check_composed(char *map)
+{
+	if (!ft_strchr(map, '0'))
+		return (0);
+	if (!ft_strchr(map, '1'))
+		return (0);
+	if (!ft_strchr(map, 'C'))
+		return (0);
+	if (!ft_strchr(map, 'P'))
+		return (0);
+	if (!ft_strchr(map, 'E'))
+		return (0);
+	return (1);
+}
+
 void	check_map(t_game *game)
 {
+	if (!check_composed(game->map))
+		print_error("The map must compose with 0, 1, C, E and P\n", 1);
 	if (!check_components(game->orig_map_2d))
 		print_error("only 0, 1, C, E and P are allowed\n", 1);
 	if (!check_ecp(game->orig_map_2d))
