@@ -6,7 +6,7 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 07:42:12 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/13 00:11:27 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/13 07:59:51 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	read_map(t_game *game, int fd)
 		free(line);
 		game->nbr_cols++;
 	}
+	if (game->map[ft_strlen(game->map) - 1] == '\n')
+		print_error("Map is not valid\n", 1);
 	free(tmp_line);
 }
 
