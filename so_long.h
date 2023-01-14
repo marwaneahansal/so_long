@@ -6,7 +6,7 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:16:28 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/11 03:26:05 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/14 01:59:15 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <mlx.h>
 
 # include "libft/libft.h"
-# include "gnl/get_next_line.h"
+# include "libft/get_next_line.h"
 
 typedef struct s_player {
 	int	pos_x;

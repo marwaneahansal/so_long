@@ -6,12 +6,12 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 06:53:40 by mahansal          #+#    #+#             */
-/*   Updated: 2022/12/28 06:14:11 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/14 01:51:42 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include "../libft/libft.h"
+#include "libft.h"
 
 int	check_buffer_line(char *buffer)
 {

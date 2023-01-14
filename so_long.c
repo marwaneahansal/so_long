@@ -6,7 +6,7 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:15:51 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/13 00:37:12 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/13 23:38:48 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	check_map_name(char *filepath)
 {
 	char	*res;
-	
+
 	res = ft_strrchr(filepath, '.');
 	if (!res)
 		print_error("Map extension file must end with .ber\n", 1);
