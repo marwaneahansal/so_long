@@ -6,7 +6,7 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:16:28 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/14 02:05:57 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/16 02:31:07 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,6 @@ void	move_player(t_game *game, int new_x_pos, int new_pos_y);
 
 void	print_error(char *error, int exit_code);
 void	exit_game(t_game *game);
+void	show_nbr_movements(t_game *game);
 
 #endif

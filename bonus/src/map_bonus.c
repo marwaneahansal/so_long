@@ -6,7 +6,7 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 03:18:17 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/14 02:07:25 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/16 02:33:07 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,6 @@ int	key_hook(int keycode, t_game *game)
 
 void	move_player(t_game *game, int new_x_pos, int new_y_pos)
 {
-	ft_putstr_fd("the number of movements: ", 1);
-	ft_putnbr_fd(++game->player->movements_nbr, 1);
-	ft_putchar_fd('\n', 1);
 	if (game->map_2d[new_x_pos][new_y_pos] == 'C')
 	{
 		game->map_2d[game->player->pos_x][game->player->pos_y] = '0';
@@ -105,4 +102,6 @@ void	move_player(t_game *game, int new_x_pos, int new_y_pos)
 	}
 	else if (game->is_finished && game->map_2d[new_x_pos][new_y_pos] == 'E')
 		exit_game(game);
+	show_nbr_movements(game);
+	game->player->movements_nbr++;
 }

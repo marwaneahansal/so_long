@@ -6,7 +6,7 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:15:51 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/14 02:06:03 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/16 02:33:30 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,9 @@ int	main(int argc, char *argv[])
 	check_map(game);
 	game->mlx = mlx_init();
 	game->mlx_window = mlx_new_window(game->mlx, game->nbr_rows * 46,
-			game->nbr_cols * 45, "So Long!");
+			game->nbr_cols * 45, "So Long Bonus!");
 	render_map(game);
+	show_nbr_movements(game);
 	mlx_hook(game->mlx_window, 2, 0, key_hook, game);
 	mlx_loop(game->mlx);
 	exit_game(game);

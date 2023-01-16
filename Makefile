@@ -6,7 +6,7 @@
 #    By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/16 15:14:27 by mahansal          #+#    #+#              #
-#    Updated: 2023/01/14 02:13:01 by mahansal         ###   ########.fr        #
+#    Updated: 2023/01/16 02:16:39 by mahansal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,15 @@ SRCS 		= so_long.c src/map_check/check_map.c src/map_check/check_components.c \
 				src/map_check/check_walls.c src/map_check/check_path.c \
 				src/init.c src/utils.c src/map.c
 
+BSRCS 		= bonus/so_long_bonus.c bonus/src/map_check/check_map_bonus.c bonus/src/map_check/check_components_bonus.c \
+				bonus/src/map_check/check_ecp_bonus.c bonus/src/map_check/check_rect_bonus.c \
+				bonus/src/map_check/check_walls_bonus.c bonus/src/map_check/check_path_bonus.c \
+				bonus/src/init_bonus.c bonus/src/utils_bonus.c bonus/src/map_bonus.c
+
 OBJS 		= $(SRCS:.c=.o)
+
+BOBJS 		= $(BSRCS:.c=.o)
+
 
 CFLAGS 		= -Wall -Wextra -Werror
 
@@ -41,25 +49,23 @@ $(LIBFT_NAME):
 	@-make -C libft
 	@echo "libft compiled"
 
-bonus: $(NAME_BONUS)
-
-$(NAME_BONUS):
-	@echo "Compiling bonus..."
-	@-make -C bonus
-	@echo "bonus compiled"
+bonus: $(LIBFT_NAME) $(BOBJS)
+	@echo "Compiling so_long_bonus..."
+	@-$(CC) $(CFLAGS) $(BOBJS) -L libft -lft -lmlx -framework OpenGL -framework AppKit -o $(NAME_BONUS)
+	@echo "so_long_bonus compiled"
 	
 clean:
 	@echo "Cleaning..."
 	@-rm -f $(OBJS)
+	@-rm -f $(BOBJS)
 	@-make clean -C libft
-	@-make clean -C bonus
 	@echo "Cleaned"
 
 fclean: clean
 	@echo "Full cleaning..."
 	@-rm -f $(NAME)
+	@-rm -f $(NAME_BONUS)
 	@-make fclean -C libft
-	@-make fclean -C bonus
 	@echo "Full cleaned"
 
 re: fclean all

@@ -6,7 +6,7 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:15:51 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/13 23:38:48 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/16 02:03:12 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	main(int argc, char *argv[])
 	game = malloc(sizeof(t_game));
 	player = malloc(sizeof(t_player));
 	if (!game || !player)
-		print_error("Memory was not allocated1\n", 1);
+		print_error("Memory was not allocated!\n", 1);
 	init_game(game, player, fd);
 	check_map(game);
 	game->mlx = mlx_init();
