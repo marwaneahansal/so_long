@@ -6,7 +6,7 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 07:42:12 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/14 02:07:25 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/17 21:32:12 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	init_game(t_game *game, t_player *player, int fd)
 	game->nbr_cols = 0;
 	game->colle_nbr = 0;
 	game->is_finished = 0;
+	game->map = NULL;
 	game->player = player;
 	read_map(game, fd);
 	game->orig_map_2d = ft_split(game->map, '\n');

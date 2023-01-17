@@ -6,7 +6,7 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 08:47:47 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/13 08:03:41 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/17 04:14:40 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	check_composed(char *map)
 
 void	check_map(t_game *game)
 {
+	// printf("map: %s\n", game->map);
 	if (!check_composed(game->map))
 		print_error("The map must compose with 0, 1, C, E and P\n", 1);
 	if (!check_components(game->orig_map_2d))

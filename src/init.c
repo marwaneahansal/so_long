@@ -6,7 +6,7 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 07:42:12 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/13 08:09:24 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/17 21:24:32 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,10 @@ void	read_map(t_game *game, int fd)
 		free(line);
 		game->nbr_cols++;
 	}
+	close(fd);
 	if (game->map[ft_strlen(game->map) - 1] == '\n')
 		print_error("Map is not valid\n", 1);
 	free(tmp_line);
-	close(fd);
 }
 
 int	count_collectables(char *map)
@@ -86,6 +86,7 @@ void	init_game(t_game *game, t_player *player, int fd)
 	game->colle_nbr = 0;
 	game->is_finished = 0;
 	game->player = player;
+	game->map = NULL;
 	read_map(game, fd);
 	game->orig_map_2d = ft_split(game->map, '\n');
 	game->map_2d = ft_split(game->map, '\n');

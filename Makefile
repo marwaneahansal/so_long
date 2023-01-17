@@ -6,7 +6,7 @@
 #    By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/16 15:14:27 by mahansal          #+#    #+#              #
-#    Updated: 2023/01/16 02:16:39 by mahansal         ###   ########.fr        #
+#    Updated: 2023/01/17 21:24:51 by mahansal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ CFLAGS 		= -Wall -Wextra -Werror
 
 all: $(NAME)
 
-.SILENT: $(OBJS)
+# .SILENT: $(OBJS)
 
 $(NAME): $(LIBFT_NAME) $(OBJS)
 	@echo "Compiling so_long..."

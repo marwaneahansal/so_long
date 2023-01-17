@@ -6,7 +6,7 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 08:44:05 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/16 02:33:01 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/17 21:31:19 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 void	exit_game(t_game *game)
 {
-	free(game->player);
 	free(game->map);
 	free(game->map_2d);
 	free(game->orig_map_2d);
-	free(game);
 	exit(0);
 }
 
