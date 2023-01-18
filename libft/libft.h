@@ -6,7 +6,7 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 01:03:29 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/17 04:40:56 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/18 22:45:32 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <unistd.h>
 # include <stdio.h>
 # include "libft.h"
-
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);

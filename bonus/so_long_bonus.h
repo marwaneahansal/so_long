@@ -6,11 +6,11 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:16:28 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/16 02:31:07 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/18 22:45:17 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
+#ifndef SO_LONG_BONUS_H
 
 # define SO_LONG_H
 
