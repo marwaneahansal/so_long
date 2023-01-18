@@ -6,7 +6,7 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:15:51 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/17 21:29:53 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/18 22:54:15 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int	main(int argc, char *argv[])
 			game.nbr_cols * 45, "So Long!");
 	render_map(&game);
 	mlx_hook(game.mlx_window, 2, 0, key_hook, &game);
+	mlx_hook(game.mlx_window, 17, 0, (void *) exit_game, &game);
 	mlx_loop(game.mlx);
 	exit_game(&game);
 	return (0);
