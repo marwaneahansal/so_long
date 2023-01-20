@@ -1,44 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_components.c                                 :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/02 00:57:58 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/11 03:28:39 by mahansal         ###   ########.fr       */
+/*   Created: 2023/01/09 08:44:05 by mahansal          #+#    #+#             */
+/*   Updated: 2023/01/20 04:24:41 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../so_long.h"
+#include "so_long.h"
 
-int	check_char(char c)
+void	exit_game(t_game *game)
 {
-	char	*map_chars;
-
-	map_chars = "01CEP";
-	if (!ft_strchr(map_chars, c))
-		return (0);
-	return (1);
+	free(game->map);
+	free(game->map_2d);
+	free(game->orig_map_2d);
+	exit(0);
 }
 
-int	check_components(char **map)
+void	print_error(char *error, int exit_code)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (map[i])
-	{
-		j = 0;
-		while (map[i][j])
-		{
-			if (!check_char(map[i][j]))
-				return (0);
-			j++;
-		}
-		i++;
-	}
-	return (1);
+	ft_putstr_fd("Error:\n", 2);
+	ft_putstr_fd(error, 2);
+	exit(exit_code);
 }

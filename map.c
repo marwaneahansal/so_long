@@ -6,11 +6,11 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 03:18:17 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/11 03:27:35 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/20 04:24:41 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "so_long.h"
 
 void	mlx_show_image(t_game *game, char *filename, int x, int y)
 {

@@ -6,11 +6,11 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 07:42:12 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/17 21:24:32 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/20 04:25:02 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "so_long.h"
 
 void	get_player_pos(char **map, t_player *player)
 {
@@ -86,7 +86,7 @@ void	init_game(t_game *game, t_player *player, int fd)
 	game->colle_nbr = 0;
 	game->is_finished = 0;
 	game->player = player;
-	game->map = NULL;
+	game->map = 0;
 	read_map(game, fd);
 	game->orig_map_2d = ft_split(game->map, '\n');
 	game->map_2d = ft_split(game->map, '\n');

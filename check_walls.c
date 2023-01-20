@@ -6,11 +6,11 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 05:16:25 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/11 03:32:06 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/20 04:24:25 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../so_long.h"
+#include "so_long.h"
 
 int	check_rows(char **map)
 {

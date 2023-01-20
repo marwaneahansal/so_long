@@ -1,33 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_rect.c                                       :+:      :+:    :+:   */
+/*   check_ecp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/02 02:57:21 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/11 03:31:28 by mahansal         ###   ########.fr       */
+/*   Created: 2023/01/02 02:46:07 by mahansal          #+#    #+#             */
+/*   Updated: 2023/01/20 04:24:07 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../so_long.h"
+#include "so_long.h"
 
-int	check_rect(char **map)
+int	count_charachters(char **map, char c)
 {
-	size_t	x;
-	size_t	y;
+	int	i;
+	int	j;
+	int	count;
 
-	y = 0;
-	x = ft_strlen(map[0]);
-	while (map[y])
+	i = 0;
+	j = 0;
+	count = 0;
+	while (map[i])
 	{
-		if (ft_strlen(map[y]) != x)
-			return (0);
-		y++;
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == c)
+				count++;
+			j++;
+		}
+		i++;
 	}
-	while (map[y])
-		y++;
-	if (x < y + 1)
-		return (0);
-	return (1);
+	return (count);
+}
+
+int	check_ecp(char **map)
+{
+	if (count_charachters(map, 'E') == 1
+		&& count_charachters(map, 'C') >= 1
+		&& count_charachters(map, 'P') == 1)
+		return (1);
+	return (0);
 }

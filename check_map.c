@@ -6,11 +6,11 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 08:47:47 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/18 22:45:43 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/20 04:24:25 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../so_long.h"
+#include "so_long.h"
 
 int	check_char_in_map(char **map, char c)
 {

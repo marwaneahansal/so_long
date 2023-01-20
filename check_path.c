@@ -6,11 +6,11 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 23:01:06 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/11 03:31:02 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/20 04:24:25 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../so_long.h"
+#include "so_long.h"
 
 void	player_flood_fill(char **map, int x, int y)
 {

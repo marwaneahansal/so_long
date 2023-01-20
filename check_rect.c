@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   check_rect.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/09 08:44:05 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/18 22:54:35 by mahansal         ###   ########.fr       */
+/*   Created: 2023/01/02 02:57:21 by mahansal          #+#    #+#             */
+/*   Updated: 2023/01/20 04:24:25 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "so_long.h"
 
-void	exit_game(t_game *game)
+int	check_rect(char **map)
 {
-	free(game->map);
-	free(game->map_2d);
-	free(game->orig_map_2d);
-	exit(0);
-}
+	size_t	x;
+	size_t	y;
 
-void	print_error(char *error, int exit_code)
-{
-	ft_putstr_fd("Error:\n", 2);
-	ft_putstr_fd(error, 2);
-	exit(exit_code);
+	y = 0;
+	x = ft_strlen(map[0]);
+	while (map[y])
+	{
+		if (ft_strlen(map[y]) != x)
+			return (0);
+		y++;
+	}
+	while (map[y])
+		y++;
+	if (x < y + 1)
+		return (0);
+	return (1);
 }
