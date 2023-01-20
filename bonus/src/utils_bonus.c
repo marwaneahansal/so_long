@@ -6,7 +6,7 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 08:44:05 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/18 22:46:07 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/20 04:20:55 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	show_nbr_movements(t_game *game)
 	nbr_move_str = ft_strdup("Nbr of movements: ");
 	nbr_move_str = ft_strjoin(nbr_move_str, nbr_move);
 	mlx_string_put(game->mlx, game->mlx_window, 10, 10,
-		0x00000000, nbr_move_str);
+		0x00FFFFFF, nbr_move_str);
 	free(nbr_move_str);
 	free(nbr_move);
 }

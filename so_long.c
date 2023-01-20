@@ -6,7 +6,7 @@
 /*   By: mahansal <mahansal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:15:51 by mahansal          #+#    #+#             */
-/*   Updated: 2023/01/18 22:54:15 by mahansal         ###   ########.fr       */
+/*   Updated: 2023/01/20 04:19:02 by mahansal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ int	main(int argc, char *argv[])
 	init_game(&game, &player, fd);
 	check_map(&game);
 	game.mlx = mlx_init();
-	game.mlx_window = mlx_new_window(game.mlx, game.nbr_rows * 46,
-			game.nbr_cols * 45, "So Long!");
+	game.mlx_window = mlx_new_window(game.mlx, game.nbr_rows * 70,
+			game.nbr_cols * 70, "So Long!");
 	render_map(&game);
 	mlx_hook(game.mlx_window, 2, 0, key_hook, &game);
 	mlx_hook(game.mlx_window, 17, 0, (void *) exit_game, &game);
